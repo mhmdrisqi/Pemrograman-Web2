@@ -102,6 +102,8 @@
                 <th>domisili</th>
                 <th>program Studi</th>
                 <th>skill</th>
+                <th>skor</th>
+                <th>predikat</th>
             </tr>
             <?php
                 if(isset($_POST['submit'])){
@@ -112,6 +114,7 @@
                     $domisili = $_POST['domisili'];
                     $prodi = $_POST['program_studi'];
                     $skill_user = $_POST['skill'];
+                    $skor = 0;
             ?>
                 <tr>
                     <td><?= $nim;?></td>
@@ -120,7 +123,30 @@
                     <td><?= $jenis_kelamin;?></td>
                     <td><?= $domisili;?></td>
                     <td><?= $prodi;?></td>
-                    <td><?php foreach($skill_user as $skill){echo $skill;};?></td>
+                    <td><?php 
+                    foreach($skill_user as $skill){
+                        foreach ($skills as $key => $value) {
+                            if ($skill == $key) {
+                                $skor += $value;
+                            }
+                        }
+                        echo $skill . "<br>";
+                        };
+                    ?></td>
+                    <td><?= $skor ;?></td>
+                    <td><?php
+                        if ($skor == 0) {
+                            echo "Tidak Memadai";
+                        } else if ($skor > 0 && $skor <= 40) {
+                            echo "Kurang";
+                        } else if ($skor > 40 && $skor <= 60) {
+                            echo "Cukup";
+                        } else if ($skor > 60 && $skor <= 100) {
+                            echo "Baik";
+                        } else if ($skor > 100 && $skor <= 150) {
+                            echo "Sangat Baik";
+                        } ;
+                    ?></td>
                 </tr>
             <?php }?>
         </table>
