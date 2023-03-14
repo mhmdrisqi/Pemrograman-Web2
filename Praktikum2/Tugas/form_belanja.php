@@ -102,6 +102,8 @@
       <td>Rp. <?=number_format($harga * $_POST['jumlah']) ?></td>
     </tr>
     <?php } ?>
+    </tbody>
+</table>
 </div>
 
 </body>

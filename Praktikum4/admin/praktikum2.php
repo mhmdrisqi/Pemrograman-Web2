@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nilai Mahasiswa</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+<?php
+require_once "layouts/header.php";
+require_once "layouts/menu.php";
+?>
 <div class="container">
     <h2>Form Input Nilai Mahasiswa</h2>
-<form action="form_hasil.php" method="GET">
+<form>
   <div class="form-group row">
     <label for="name" class="col-4 col-form-label">Nama</label> 
     <div class="col-8">
@@ -53,5 +46,32 @@
   </div>
 </form>
 </div>
-</body>
-</html>
+<hr>
+<div class="container">
+    <table class="table text-uppercase table-bordered">
+        <tr class="table-primary">
+            <th>Nama</th>
+            <th>Mata Kuliah</th>
+            <th>UTS</th>
+            <th>UAS</th>
+            <th>Tugas</th>
+            <th>Total Nilai</th>
+            <th>keterangan</th>
+        </tr>
+        <?php 
+        if (isset($_GET['submit'])) {
+        require_once '../../Praktikum2/proses_nilai.php';
+        ?>
+        <tr>
+            <td><?= $nama;?></td>
+            <td><?= $matkul;?></td>
+            <td><?= $UTS;?></td>
+            <td><?= $UAS;?></td>
+            <td><?= $Tugas;?></td>
+            <td><?= $total_nilai;?></td>
+            <td><?= $keterangan;?></td>
+        </tr>
+        <?php } ?>
+    </table>
+</div>
+<?php require_once "layouts/footer.php"; ?>
